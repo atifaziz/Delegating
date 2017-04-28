@@ -31,7 +31,7 @@ namespace Delegating
         public DelegatingServiceProvider(Func<Type, object> delegatee) =>
             _delegatee = delegatee ?? throw new ArgumentNullException(nameof(delegatee));
 
-        public object GetService(Type serviceType) =>
+        public virtual object GetService(Type serviceType) =>
             _delegatee(serviceType ?? throw new ArgumentNullException(nameof(serviceType)));
     }
 }
