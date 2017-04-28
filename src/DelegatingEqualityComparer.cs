@@ -25,18 +25,18 @@ namespace Delegating
     using System;
     using System.Collections.Generic;
 
-    static partial class Delegate
+    partial class DelegatingEqualityComparer<T> : IEqualityComparer<T>
     {
-        public static IDisposable Disposable(Action delegatee) =>
-            new DelegatingDisposable(delegatee);
+        readonly Func<T, T, bool> _equals;
+        readonly Func<T, int> _getHashCode;
 
-        public static IServiceProvider ServiceProvider(Func<Type, object> delegatee) =>
-            new DelegatingServiceProvider(delegatee);
+        public DelegatingEqualityComparer(Func<T, T, bool> equals, Func<T, int> getHashCode)
+        {
+            _equals = equals ?? throw new ArgumentNullException(nameof(equals));
+            _getHashCode = getHashCode ?? throw new ArgumentNullException(nameof(getHashCode));
+        }
 
-        public static IComparer<T> Comparer<T>(Func<T, T, int> comparer) =>
-            new DelegatingComparer<T>(comparer);
-
-        public static IEqualityComparer<T> EqualityComparer<T>(Func<T, T, bool> equals, Func<T, int> getHashCode) =>
-            new DelegatingEqualityComparer<T>(equals, getHashCode);
+        public virtual bool Equals(T x, T y) => _equals(x, y);
+        public virtual int GetHashCode(T obj) => _getHashCode(obj);
     }
 }

@@ -1,7 +1,8 @@
 namespace Delegating
 {
+    public static partial class Delegate {}
+    public partial class DelegatingComparer<T> {}
+    public partial class DelegatingEqualityComparer<T> {}
     public partial class DelegatingDisposable {}
     public partial class DelegatingServiceProvider {}
-    public partial class DelegatingComparer<T> {}
-    public static partial class Delegate {}
 }

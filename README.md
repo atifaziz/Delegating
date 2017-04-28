@@ -57,9 +57,10 @@ Disposed!
 
 Delegated implementations are available for the following interfaces:
 
-- [`IDisposable`][IDisposable]
-- [`IServiceProvider`][IServiceProvider]
 - [`IComparer<T>`][IComparer]
+- [`IDisposable`][IDisposable]
+- [`IEqualityComparer<T>`][IEqualityComparer]
+- [`IServiceProvider`][IServiceProvider]
 
 
 [build-badge]: https://img.shields.io/appveyor/ci/raboof/delegating.svg
@@ -70,6 +71,7 @@ Delegated implementations are available for the following interfaces:
 [builds]: https://ci.appveyor.com/project/raboof/delegating
 [IComparer]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.icomparer-1
 [IDisposable]: https://docs.microsoft.com/en-us/dotnet/api/system.idisposable
+[IEqualityComparer]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.iequalitycomparer-1
 [IServiceProvider]: https://docs.microsoft.com/en-us/dotnet/api/system.iserviceprovider
 [fsobjexpr]: https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/object-expressions
 [delegate]: https://docs.microsoft.com/en-us/dotnet/api/system.delegate
