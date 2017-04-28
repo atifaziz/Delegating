@@ -25,15 +25,13 @@ namespace Delegating
     using System;
     using System.Collections.Generic;
 
-    static partial class Delegate
+    partial class DelegatingComparer<T> : IComparer<T>
     {
-        public static IDisposable Disposable(Action delegatee) =>
-            new DelegatingDisposable(delegatee);
+        readonly Func<T, T, int> _comparer;
 
-        public static IServiceProvider ServiceProvider(Func<Type, object> delegatee) =>
-            new DelegatingServiceProvider(delegatee);
+        public DelegatingComparer(Func<T, T, int> comparer) =>
+            _comparer = comparer ?? throw new ArgumentNullException(nameof(comparer));
 
-        public static IComparer<T> Comparer<T>(Func<T, T, int> comparer) =>
-            new DelegatingComparer<T>(comparer);
+        public virtual int Compare(T x, T y) => _comparer(x, y);
     }
 }
