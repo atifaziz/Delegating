@@ -53,6 +53,13 @@ Disposed!
 >
 ```
 
+## Implementations
+
+Delegated implementations are available for the following interfaces:
+
+- [`IDisposable`][IDisposable]
+- [`IServiceProvider`][IServiceProvider]
+
 
 [build-badge]: https://img.shields.io/appveyor/ci/raboof/delegating.svg
 [myget-badge]: https://img.shields.io/myget/raboof/v/Delegating.svg?label=myget
@@ -61,5 +68,6 @@ Disposed!
 [nuget-pkg]: https://www.nuget.org/packages/Delegating
 [builds]: https://ci.appveyor.com/project/raboof/delegating
 [IDisposable]: https://docs.microsoft.com/en-us/dotnet/api/system.idisposable
+[IServiceProvider]: https://docs.microsoft.com/en-us/dotnet/api/system.iserviceprovider
 [fsobjexpr]: https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/object-expressions
 [delegate]: https://docs.microsoft.com/en-us/dotnet/api/system.delegate

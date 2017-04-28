@@ -24,12 +24,14 @@ namespace Delegating
 {
     using System;
 
-    static partial class Delegate
+    partial class DelegatingServiceProvider : IServiceProvider
     {
-        public static IDisposable Disposable(Action delegatee) =>
-            new DelegatingDisposable(delegatee);
+        readonly Func<Type, object> _delegatee;
 
-        public static IServiceProvider ServiceProvider(Func<Type, object> delegatee) =>
-            new DelegatingServiceProvider(delegatee);
+        public DelegatingServiceProvider(Func<Type, object> delegatee) =>
+            _delegatee = delegatee ?? throw new ArgumentNullException(nameof(delegatee));
+
+        public object GetService(Type serviceType) =>
+            _delegatee(serviceType ?? throw new ArgumentNullException(nameof(serviceType)));
     }
 }
