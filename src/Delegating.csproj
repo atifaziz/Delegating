@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <LangVersion>7</LangVersion>
+    <Authors>Atif Aziz</Authors>
+    <Company>N/A</Company>
+    <Description>.NET Standard Library providing delegated implementations of common interfaces.</Description>
+    <Copyright>Copyright © 2017 Atif Aziz. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/atifaziz/Delegating</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/atifaziz/Delegating</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>delegate</PackageTags>
+  </PropertyGroup>
+
+</Project>
