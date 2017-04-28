@@ -23,11 +23,14 @@ namespace Delegating.Tests
         }
 
         [TestMethod]
-        public void ReturnsRequestedService()
+        public void UsesDelegatee()
         {
-            var service = new object();
-            var serviceProvider = ServiceProvider(_ => service);
-            Assert.AreSame(service, serviceProvider.GetService(service.GetType()));
+            var arg = default(Type);
+            var result = new object();
+            var serviceProvider = ServiceProvider(type => Capture.CaptureInvocation(out arg, type, result));
+            var serviceType = typeof(object);
+            Assert.AreSame(result, serviceProvider.GetService(serviceType));
+            Assert.AreSame(serviceType, arg);
         }
     }
 }
