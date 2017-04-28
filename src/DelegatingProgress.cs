@@ -23,23 +23,14 @@
 namespace Delegating
 {
     using System;
-    using System.Collections.Generic;
 
-    static partial class Delegate
+    partial class DelegatingProgress<T> : IProgress<T>
     {
-        public static IDisposable Disposable(Action delegatee) =>
-            new DelegatingDisposable(delegatee);
+        readonly Action<T> _delegatee;
 
-        public static IServiceProvider ServiceProvider(Func<Type, object> delegatee) =>
-            new DelegatingServiceProvider(delegatee);
+        public DelegatingProgress(Action<T> delegatee) =>
+            _delegatee = delegatee ?? throw new ArgumentNullException(nameof(delegatee));
 
-        public static IComparer<T> Comparer<T>(Func<T, T, int> comparer) =>
-            new DelegatingComparer<T>(comparer);
-
-        public static IEqualityComparer<T> EqualityComparer<T>(Func<T, T, bool> equals, Func<T, int> getHashCode) =>
-            new DelegatingEqualityComparer<T>(equals, getHashCode);
-
-        public static IProgress<T> Progress<T>(Action<T> delegatee) =>
-            new DelegatingProgress<T>(delegatee);
+        public virtual void Report(T value) => _delegatee(value);
     }
 }

@@ -60,6 +60,7 @@ Delegated implementations are available for the following interfaces:
 - [`IComparer<T>`][IComparer]
 - [`IDisposable`][IDisposable]
 - [`IEqualityComparer<T>`][IEqualityComparer]
+- [`IProgress`][IProgress]
 - [`IServiceProvider`][IServiceProvider]
 
 
@@ -72,6 +73,7 @@ Delegated implementations are available for the following interfaces:
 [IComparer]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.icomparer-1
 [IDisposable]: https://docs.microsoft.com/en-us/dotnet/api/system.idisposable
 [IEqualityComparer]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.iequalitycomparer-1
+[IProgress]: https://docs.microsoft.com/en-us/dotnet/api/system.iprogress-1
 [IServiceProvider]: https://docs.microsoft.com/en-us/dotnet/api/system.iserviceprovider
 [fsobjexpr]: https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/object-expressions
 [delegate]: https://docs.microsoft.com/en-us/dotnet/api/system.delegate
