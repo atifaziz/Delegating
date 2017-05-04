@@ -23,26 +23,17 @@
 namespace Delegating
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 
-    static partial class Delegate
+    partial class DelegatingEnumerable<T> : IEnumerable<T>
     {
-        public static IDisposable Disposable(Action delegatee) =>
-            new DelegatingDisposable(delegatee);
+        readonly Func<IEnumerator<T>> _delegatee;
 
-        public static IServiceProvider ServiceProvider(Func<Type, object> delegatee) =>
-            new DelegatingServiceProvider(delegatee);
+        public DelegatingEnumerable(Func<IEnumerator<T>> delegatee) =>
+            _delegatee = delegatee ?? throw new ArgumentNullException(nameof(delegatee));
 
-        public static IComparer<T> Comparer<T>(Func<T, T, int> comparer) =>
-            new DelegatingComparer<T>(comparer);
-
-        public static IEqualityComparer<T> EqualityComparer<T>(Func<T, T, bool> equals, Func<T, int> getHashCode) =>
-            new DelegatingEqualityComparer<T>(equals, getHashCode);
-
-        public static IProgress<T> Progress<T>(Action<T> delegatee) =>
-            new DelegatingProgress<T>(delegatee);
-
-        public static IEnumerable<T> Enumerable<T>(Func<IEnumerator<T>> delegatee) =>
-            new DelegatingEnumerable<T>(delegatee);
+        public virtual IEnumerator<T> GetEnumerator() => _delegatee();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
