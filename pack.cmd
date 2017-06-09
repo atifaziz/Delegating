@@ -7,11 +7,13 @@ goto :EOF
 :main
 setlocal
 set VERSION_SUFFIX=
-if not "%~1"=="" set VERSION_SUFFIX=--version-suffix %1
-call build                                               ^
- && dotnet pack                                          ^
-           --no-build --include-symbols --include-source ^
-           -c Release -o ..\dist                         ^
-           %VERSION_SUFFIX%                              ^
-           src
+if not "%~1"=="" set VERSION_SUFFIX=/p:VersionSuffix=%1
+call build ^
+  && call msbuild.cmd /v:m /t:Pack                        ^
+                           /p:Configuration=Release       ^
+                           /p:IncludeSymbols=true         ^
+                           /p:IncludeSource=true          ^
+                           /p:PackageOutputPath=%cd%/dist ^
+                           %VERSION_SUFFIX%               ^
+                           src\Delegating.csproj
 goto :EOF

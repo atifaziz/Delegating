@@ -5,6 +5,8 @@ namespace Delegating
     public partial class DelegatingEqualityComparer<T> {}
     public partial class DelegatingEnumerable<T> {}
     public partial class DelegatingDisposable {}
+#if PROGRESS
     public partial class DelegatingProgress<T> {}
+#endif
     public partial class DelegatingServiceProvider {}
 }

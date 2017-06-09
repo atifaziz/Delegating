@@ -39,8 +39,10 @@ namespace Delegating
         public static IEqualityComparer<T> EqualityComparer<T>(Func<T, T, bool> equals, Func<T, int> getHashCode) =>
             new DelegatingEqualityComparer<T>(equals, getHashCode);
 
+#if PROGRESS
         public static IProgress<T> Progress<T>(Action<T> delegatee) =>
             new DelegatingProgress<T>(delegatee);
+#endif
 
         public static IEnumerable<T> Enumerable<T>(Func<IEnumerator<T>> delegatee) =>
             new DelegatingEnumerable<T>(delegatee);

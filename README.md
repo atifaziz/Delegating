@@ -9,6 +9,8 @@ of common interfaces, typically those with a single method only. The actual
 implementation is delegated to an `Action` or a function (`Func<>`, `Func<,>`
 and so on depending on the arity of the original method).
 
+With version 1.2, Delegating also targets .NET Framework versions 3.5 and up.
+
 
 ## Motivation
 
@@ -53,6 +55,7 @@ Disposed!
 >
 ```
 
+
 ## Implementations
 
 Delegated implementations are available for the following interfaces:
@@ -61,7 +64,7 @@ Delegated implementations are available for the following interfaces:
 - [`IDisposable`][IDisposable]
 - [`IEqualityComparer<T>`][IEqualityComparer]
 - [`IEnumerable<T>`][IEnumerable]
-- [`IProgress`][IProgress]
+- [`IProgress`][IProgress] (.NET Framework 4.5 and above)
 - [`IServiceProvider`][IServiceProvider]
 
 The delegated implementation for an `IEnumerable<T>` becomes particularly
@@ -150,6 +153,19 @@ following sequnce as its run:
 |  10 |   5 | 10  |     2 |  15 |     7.5 | 
 |  15 |   5 | 15  |     3 |  30 |      10 | 
 |  20 |   5 | 20  |     4 |  50 |    12.5 | 
+
+
+## Building
+
+Building the solution requires MSBuild 15. On a Windows host, run `build.cmd`
+to build the solution and `pack.cmd` to build and pack.
+
+On a non-Windows host, use the `dotnet` CLI for building and testing:
+
+    $ dotnet restore
+    $ dotnet build -c Debug -f netstandard1.0 src/Delegating.csproj
+    $ dotnet build -c Release -f netstandard1.0 src/Delegating.csproj
+    $ dotnet test .\tests\Delegating.Tests.csproj
 
 
 [build-badge]: https://img.shields.io/appveyor/ci/raboof/delegating.svg

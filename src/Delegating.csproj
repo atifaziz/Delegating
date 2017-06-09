@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>1.1.0</VersionPrefix>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <TargetFrameworks>net35;net45;netstandard1.0</TargetFrameworks>
     <LangVersion>7</LangVersion>
     <Authors>Atif Aziz</Authors>
     <Company>N/A</Company>
@@ -15,6 +15,10 @@
     <PackageTags>delegate</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'netstandard1.0'">
+    <DefineConstants>$(DefineConstants);PROGRESS</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\bin\Debug\</OutputPath>
   </PropertyGroup>
@@ -23,7 +27,7 @@
     <OutputPath>..\bin\Release\</OutputPath>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.0'">
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
   </ItemGroup>
 

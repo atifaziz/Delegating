@@ -7,6 +7,6 @@ goto :EOF
 :main
     dotnet restore ^
  && dotnet --info ^
- && dotnet build /p:Configuration=Debug ^
- && dotnet build /p:Configuration=Release
+ && call msbuild.cmd /v:m /p:Configuration=Debug ^
+ && call msbuild.cmd /v:m /p:Configuration=Release
 goto :EOF

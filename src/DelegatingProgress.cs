@@ -20,6 +20,8 @@
 //
 #endregion
 
+#if PROGRESS
+
 namespace Delegating
 {
     using System;
@@ -34,3 +36,5 @@ namespace Delegating
         public virtual void Report(T value) => _delegatee(value);
     }
 }
+
+#endif
