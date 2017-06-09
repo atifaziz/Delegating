@@ -104,8 +104,8 @@ var q =
                     while (e.MoveNext())
                     {
                         var x = e.Current;
-                        if (count == 0 || x < min) min = e.Current;
-                        if (count == 0 || x > max) max = e.Current;
+                        if (x < min) min = e.Current;
+                        if (x > max) max = e.Current;
                         sum += e.Current;
                         yield return (x, min, max, ++count, sum);
                     }
