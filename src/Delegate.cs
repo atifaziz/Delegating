@@ -46,5 +46,17 @@ namespace Delegating
 
         public static IEnumerable<T> Enumerable<T>(Func<IEnumerator<T>> delegatee) =>
             new DelegatingEnumerable<T>(delegatee);
+
+#if OBSERVABLE
+
+        public static IObservable<T> Observable<T>(Func<IObserver<T>, IDisposable> delegatee) =>
+            new DelegatingObservable<T>(delegatee);
+
+        public static IObserver<T> Observer<T>(Action<T> onNext,
+                                               Action<Exception> onError = null,
+                                               Action onCompleted = null) =>
+            new DelegatingObserver<T>(onNext, onError, onCompleted);
+
+#endif
     }
 }

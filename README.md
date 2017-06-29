@@ -64,6 +64,8 @@ Delegated implementations are available for the following interfaces:
 - [`IDisposable`][IDisposable]
 - [`IEqualityComparer<T>`][IEqualityComparer]
 - [`IEnumerable<T>`][IEnumerable]
+- [`IObservable<T>`][IObservable] (.NET Framework 4.0 and above)
+- [`IObserver<T>`][IObserver] (.NET Framework 4.0 and above)
 - [`IProgress`][IProgress] (.NET Framework 4.5 and above)
 - [`IServiceProvider`][IServiceProvider]
 
@@ -178,6 +180,8 @@ On a non-Windows host, use the `dotnet` CLI for building and testing:
 [IDisposable]: https://docs.microsoft.com/en-us/dotnet/api/system.idisposable
 [IEnumerable]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1
 [IEqualityComparer]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.iequalitycomparer-1
+[IObservable]: https://docs.microsoft.com/en-us/dotnet/api/system.iobservable-1
+[IObserver]: https://docs.microsoft.com/en-us/dotnet/api/system.iobserver-1
 [IProgress]: https://docs.microsoft.com/en-us/dotnet/api/system.iprogress-1
 [IServiceProvider]: https://docs.microsoft.com/en-us/dotnet/api/system.iserviceprovider
 [fsobjexpr]: https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/object-expressions

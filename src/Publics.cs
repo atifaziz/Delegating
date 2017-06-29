@@ -9,4 +9,8 @@ namespace Delegating
     public partial class DelegatingProgress<T> {}
 #endif
     public partial class DelegatingServiceProvider {}
+#if OBSERVABLE
+    public partial class DelegatingObservable<T> {}
+    public partial class DelegatingObserver<T> {}
+#endif
 }
