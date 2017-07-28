@@ -157,6 +157,43 @@ following sequnce as its run:
 |  20 |   5 | 20  |     4 |  50 |    12.5 | 
 
 
+## Conflicts
+
+If you statically import `Delegating.Delegate` members via
+`using static Delegating.Delegate` then chances are that you will run into
+some conflicts with `System.Linq`, which is a commonly imported namespace in
+many source files and projects. The conflict specifically occurs between the
+method `Enumerable` on `Delegating.Delegate` and the class
+[`Enumerable`][Enumerable] from `System.Linq`. The workaround is to simply
+import `System.Linq.Enumerable` explicitly. The following C# Interactive
+session demonstrates the conflict and the workaround:
+
+```
+Microsoft (R) Visual C# Interactive Compiler version 2.2.0.61624
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Type "#help" for more information.
+> #r "Delegating.dll"
+> using static Delegating.Delegate;
+> using System.Linq;
+> Enumerable(() => { return _(); IEnumerator<double> _() { yield return Math.PI; } })
+DelegatingEnumerable<double> { 3.1415926535897931 }
+> // The following won't compile due to a conflict
+> Enumerable.Range(1, 10)
+(1,1): error CS0119: 'Delegate.Enumerable<T>(Func<IEnumerator<T>>)' is a method, which is not valid in the given context
+> // The workaround is to explicitly import Enumerable from System.Linq
+> using Enumerable = System.Linq.Enumerable;
+> // Now the following compiles just fine
+> Enumerable.Range(1, 10)
+RangeIterator { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
+> // The Enumerable method from Delegating.Delegate continues to be available:
+> Enumerable(() => { return _(); IEnumerator<double> _() { yield return Math.PI; } })
+DelegatingEnumerable<double> { 3.1415926535897931 }
+```
+
+For more information and background, see [issue #2][#2].
+
+
 ## Building
 
 Building the solution requires MSBuild 15. On a Windows host, run `build.cmd`
@@ -187,3 +224,5 @@ On a non-Windows host, use the `dotnet` CLI for building and testing:
 [fsobjexpr]: https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/object-expressions
 [delegate]: https://docs.microsoft.com/en-us/dotnet/api/system.delegate
 [cs-local-funcs]: https://docs.microsoft.com/en-us/dotnet/articles/csharp/whats-new/csharp-7#local-functions
+[Enumerable]: https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable
+[#2]: https://github.com/atifaziz/Delegating/issues/2
