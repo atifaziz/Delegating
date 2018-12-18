@@ -199,12 +199,12 @@ For more information and background, see [issue #2][#2].
 Building the solution requires MSBuild 15. On a Windows host, run `build.cmd`
 to build the solution and `pack.cmd` to build and pack.
 
-On a non-Windows host, use the `dotnet` CLI for building and testing:
+On a non-Windows host with .NET Core SDK 2.1.400+ installed, use the
+`dotnet` CLI for building and testing:
 
-    $ dotnet restore
-    $ dotnet build -c Debug -f netstandard1.0 src/Delegating.csproj
-    $ dotnet build -c Release -f netstandard1.0 src/Delegating.csproj
-    $ dotnet test .\tests\Delegating.Tests.csproj
+    $ dotnet build -c Debug -f netstandard2.0 src
+    $ dotnet build -c Release -f netstandard2.0 src
+    $ dotnet test tests
 
 
 [build-badge]: https://img.shields.io/appveyor/ci/raboof/delegating.svg
