@@ -29,7 +29,7 @@ namespace Delegating.Tests
             const bool result = false;
             var comparer = EqualityComparer((a, b) => CaptureInvocation(out args, a, b, result), NotImplementedFunc.Of<int, int>());
             Assert.AreEqual(result, comparer.Equals(123, 456));
-            (var first, var second) = args;
+            var (first, second) = args;
             Assert.AreEqual(123, first);
             Assert.AreEqual(456, second);
         }

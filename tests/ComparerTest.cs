@@ -22,7 +22,7 @@ namespace Delegating.Tests
             const int result = 42;
             var comparer = Comparer((int a, int b) => CaptureInvocation(out args, a, b, result));
             Assert.AreEqual(result, comparer.Compare(123, 456));
-            (var first, var second) = args;
+            var (first, second) = args;
             Assert.AreEqual(123, first);
             Assert.AreEqual(456, second);
         }
