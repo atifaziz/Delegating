@@ -8,12 +8,16 @@
     <Company>N/A</Company>
     <Description>.NET Standard Library providing delegated implementations of common interfaces.</Description>
     <Copyright>Copyright © 2017 Atif Aziz. All rights reserved.</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseFile>COPYING.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/atifaziz/Delegating</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atifaziz/Delegating</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>delegate</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\COPYING.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net40'">
     <DefineConstants>$(DefineConstants);OBSERVABLE</DefineConstants>
